@@ -4,9 +4,9 @@
 
 I spend my days managing 100+ commercial accounts at First Bank of Nigeria in the China Africa Free Trade Zone, and my evenings building software. I'm completing a B.S. in Software Development at BYU-Idaho, and I've already shipped a full-stack ride-hailing platform, a billing SaaS and client websites alongside my full-time job. I like building tools that solve real business problems, especially in banking, payments, onboarding, logistics and commerce.
 
-- 🔭 **Currently building:** Elorge Store, a factory-direct marketplace for Nigerian sellers and buyers, and an offline-first school management system with a built-in ERP for every school that joins
+- 🔭 **Currently building:** Elorge Store, a factory-direct marketplace for Nigerian sellers and buyers, and an offline-first school management system with a built-in ERP for every school that joins. I'm also taking Diakite from one country to a multi-country, multi-currency platform across West and Central Africa
 - 🌱 **Currently learning:** C++, Kotlin and Java
-- 💬 **Ask me about:** banking domain (KYC/AML, CBN compliance), full-stack web development, e-commerce and payments, turning business problems into software
+- 💬 **Ask me about:** banking domain (KYC/AML, CBN compliance), full-stack web development, e-commerce and payments, mobile money, turning business problems into software
 - 📫 **Reach me:** [georgeolumah@gmail.com](mailto:georgeolumah@gmail.com) · [LinkedIn](https://www.linkedin.com/in/lucky-george-olumah)
 
 ---
@@ -40,6 +40,8 @@ I spend my days managing 100+ commercial accounts at First Bank of Nigeria in th
 **Payments & Integrations**
 
 ![Flutterwave](https://img.shields.io/badge/Flutterwave-F5A623)
+![Paystack](https://img.shields.io/badge/Paystack-00C3F7)
+![Orange Money](https://img.shields.io/badge/Orange_Money-FF7900)
 ![Resend](https://img.shields.io/badge/Resend-000000?logo=resend&logoColor=white)
 ![Brevo](https://img.shields.io/badge/Brevo-0B996E?logo=brevo&logoColor=white)
 ![Cloudinary](https://img.shields.io/badge/Cloudinary-3448C5?logo=cloudinary&logoColor=white)
@@ -60,10 +62,11 @@ I spend my days managing 100+ commercial accounts at First Bank of Nigeria in th
 ![Git](https://img.shields.io/badge/Git-F05032?logo=git&logoColor=white)
 ![GitHub](https://img.shields.io/badge/GitHub-181717?logo=github&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white)
+![Jest](https://img.shields.io/badge/Jest-C21325?logo=jest&logoColor=white)
 ![Vercel](https://img.shields.io/badge/Vercel-000000?logo=vercel&logoColor=white)
 ![Render](https://img.shields.io/badge/Render-46E3B7?logo=render&logoColor=black)
 
-**Architecture:** REST APIs · webhooks · offline-first design · PWA · multi-tenant ERP modules · JWT and role-based access control
+**Architecture:** REST APIs · webhooks · multi-country and multi-currency design · internationalisation (11 languages) · offline-first design · PWA · multi-tenant ERP modules · JWT and role-based access control · automated testing
 
 **Currently learning**
 
@@ -71,7 +74,7 @@ I spend my days managing 100+ commercial accounts at First Bank of Nigeria in th
 ![Kotlin](https://img.shields.io/badge/Kotlin-7F52FF?logo=kotlin&logoColor=white)
 ![Java](https://img.shields.io/badge/Java-ED8B00?logo=openjdk&logoColor=white)
 
-**Domain knowledge:** KYC/AML · CBN compliance · commercial banking · digital onboarding · payments and remittance · e-commerce and marketplaces · school administration, HR and payroll
+**Domain knowledge:** KYC/AML · CBN compliance · commercial banking · digital onboarding · payments and remittance · mobile money · e-commerce and marketplaces · school administration, HR and payroll
 
 ---
 
@@ -87,16 +90,36 @@ A marketplace where factories, farms, importers, wholesalers and makers sell to 
 - **Status:** pre-launch, in testing
 - **Stack:** Next.js, TypeScript, Sanity, Flutterwave, Resend, Telegram Bot API
 - **Repo:** [dgeemedia/e-store](https://github.com/dgeemedia/e-store)
-<!-- Add "Live:" and "Repo:" links here when the site goes live and the repo is pushed -->
 
-### 🚗 Diakite: ride-hailing & delivery platform
-Built end to end: a backend REST API, a web admin console, and iOS and Android mobile apps.
+### 🚗 Diakite: multi-country ride-hailing & delivery platform
+Built end to end: a Node.js REST API, a web admin console, and iOS and Android apps. It started as a Nigerian product and I re-engineered it to run across **20 African markets** (West and Central Africa), each with its own currency, payment methods, language and pricing rules, all configurable by an admin with no code change. Markets are being switched on one at a time.
 
 - **Admin console:** [ride-delivery.vercel.app](https://ride-delivery.vercel.app)
 - **API:** [diakite.onrender.com/api](https://diakite.onrender.com/api)
 - **Download:** [App Store](https://apps.apple.com/ng/app/diakite/id6780779051) · [Google Play](https://play.google.com/store/apps/details?id=com.diakite.app)
 - **Repo:** [dgeemedia/ride-delivery](https://github.com/dgeemedia/ride-delivery)
-- **Stack:** Node.js, PostgreSQL, Expo (React Native)
+
+**Multi-country control from the admin console**
+- An admin picks a country and sets its fares per vehicle type, commission (rides and deliveries separately, down to 0%), surge windows and local time zone, wallet limits, withdrawal fees, onboarding bonuses and customer cashback
+- Settings resolve in order: the country's own value, then the global value, then a safe default. Money amounts never leak from one currency into another (a Naira price is never charged in CFA francs), and a new country can't go live until an admin has reviewed its prices
+- Every change is validated, role-restricted to super admins and written to an audit log with the old and new values
+- Reports and wallets are shown per currency, because amounts in different currencies can't be added together
+
+**Payments and mobile money**
+- Wallet top-ups and ride payments through Paystack, Flutterwave and Orange Money, with each country offered only the providers that serve it
+- Driver and partner withdrawals through bank transfer, Orange Money or mobile-money wallets (MTN, Vodafone, AirtelTigo), with the options varying by country. Requests go through an admin approval workflow
+- Failed transfers are caught by provider webhooks and the full amount is refunded exactly once, even if a webhook is delivered twice. Retry and reject are blocked once a transfer has started, to prevent paying someone twice
+- Currencies with no decimals (CFA francs, Guinean franc) are handled end to end, including minimum amounts and rounding
+
+**Localisation**
+- 11 languages. The app opens in a country's language based on the phone's region, and a user's own choice always wins
+- Country-aware phone validation, including the closed 10-digit numbering plans of Côte d'Ivoire and Benin
+
+**Also includes:** commission ledger, live trip sharing for rider safety (Shield), corporate accounts, and a pay-later credit product
+
+**Quality:** 180+ automated backend tests covering pricing, commission, payouts and phone rules, and a type-checked admin console
+
+- **Stack:** Node.js, Express, PostgreSQL, Prisma, Expo (React Native), React, TypeScript, Tailwind CSS, Jest; deployed on Render and Vercel
 
 ### 🏫 Elorge Schools: school management system with a built-in ERP (in development)
 An offline-first platform where every school that joins gets its own isolated ERP, so schools keep working when connectivity drops. Each school is a separate tenant with its own staff, students, money and records.
