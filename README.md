@@ -90,6 +90,7 @@ A marketplace where factories, farms, importers, wholesalers and makers sell to 
 - **Status:** pre-launch, in testing
 - **Stack:** Next.js, TypeScript, Sanity, Flutterwave, Resend, Telegram Bot API
 - **Repo:** [dgeemedia/e-store](https://github.com/dgeemedia/e-store)
+- **Live:** [e-store-eight-rose.vercel.app](https://e-store-eight-rose.vercel.app)
 
 ### 🚗 Diakite: multi-country ride-hailing & delivery platform
 Built end to end: a Node.js REST API, a web admin console, and iOS and Android apps. It started as a Nigerian product and I re-engineered it to run across **20 African markets** (West and Central Africa), each with its own currency, payment methods, language and pricing rules, all configurable by an admin with no code change. Markets are being switched on one at a time.
