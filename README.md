@@ -5,9 +5,12 @@
 I spend my days managing 100+ commercial accounts at First Bank of Nigeria in the China Africa Free Trade Zone, and my evenings building software. I'm completing a B.S. in Software Development at BYU-Idaho, and I've already shipped a full-stack ride-hailing platform, a billing SaaS and client websites alongside my full-time job. I like building tools that solve real business problems, especially in banking, payments, onboarding, logistics and commerce.
 
 - 🔭 **Currently building:** Elorge Store, a factory-direct marketplace for Nigerian sellers and buyers, and an offline-first school management system with a built-in ERP for every school that joins. I'm also taking Diakite from one country to a multi-country, multi-currency platform across West and Central Africa
-- 🌱 **Currently learning:** C++, Kotlin and Java
+- 🌱 **Currently learning:** Rust, Erlang and Flutter
 - 💬 **Ask me about:** banking domain (KYC/AML, CBN compliance), full-stack web development, e-commerce and payments, mobile money, turning business problems into software
-- 📫 **Reach me:** [georgeolumah@gmail.com](mailto:georgeolumah@gmail.com) · [LinkedIn](https://www.linkedin.com/in/lucky-george-olumah)
+- 📫 **Reach me:**
+
+  [![Email](https://img.shields.io/badge/Email-D14836?logo=gmail&logoColor=white)](mailto:georgeolumah@gmail.com)
+  [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/lucky-george-olumah-58621870)
 
 ---
 
@@ -19,6 +22,9 @@ I spend my days managing 100+ commercial accounts at First Bank of Nigeria in th
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black)
 ![Python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white)
 ![C#](https://img.shields.io/badge/C%23-512BD4?logo=dotnet&logoColor=white)
+![C++](https://img.shields.io/badge/C++-00599C?logo=cplusplus&logoColor=white)
+![Java](https://img.shields.io/badge/Java-ED8B00?logo=openjdk&logoColor=white)
+![Kotlin](https://img.shields.io/badge/Kotlin-7F52FF?logo=kotlin&logoColor=white)
 ![HTML](https://img.shields.io/badge/HTML-E34F26?logo=html5&logoColor=white)
 ![CSS](https://img.shields.io/badge/CSS-1572B6?logo=css3&logoColor=white)
 
@@ -70,9 +76,9 @@ I spend my days managing 100+ commercial accounts at First Bank of Nigeria in th
 
 **Currently learning**
 
-![C++](https://img.shields.io/badge/C++-00599C?logo=cplusplus&logoColor=white)
-![Kotlin](https://img.shields.io/badge/Kotlin-7F52FF?logo=kotlin&logoColor=white)
-![Java](https://img.shields.io/badge/Java-ED8B00?logo=openjdk&logoColor=white)
+![Rust](https://img.shields.io/badge/Rust-000000?logo=rust&logoColor=white)
+![Erlang](https://img.shields.io/badge/Erlang-A90533?logo=erlang&logoColor=white)
+![Flutter](https://img.shields.io/badge/Flutter-02569B?logo=flutter&logoColor=white)
 
 **Domain knowledge:** KYC/AML · CBN compliance · commercial banking · digital onboarding · payments and remittance · mobile money · e-commerce and marketplaces · school administration, HR and payroll
 
@@ -103,8 +109,15 @@ Built end to end: a Node.js REST API, a web admin console, and iOS and Android a
 **Multi-country control from the admin console**
 - An admin picks a country and sets its fares per vehicle type, commission (rides and deliveries separately, down to 0%), surge windows and local time zone, wallet limits, withdrawal fees, onboarding bonuses and customer cashback
 - Settings resolve in order: the country's own value, then the global value, then a safe default. Money amounts never leak from one currency into another (a Naira price is never charged in CFA francs), and a new country can't go live until an admin has reviewed its prices
-- Every change is validated, role-restricted to super admins and written to an audit log with the old and new values
+- Every change is validated, role-restricted and written to an audit log with the old and new values
 - Reports and wallets are shown per currency, because amounts in different currencies can't be added together
+
+**Country-scoped admin access**
+- A Super Admin sees and controls every country. An admin assigned to one or more countries (for example Mali) is a country admin with full access to those countries only, enforced in the backend as well as hidden in the admin console
+- Inside their own countries they manage settings (pricing, commission, payments, payouts, pause or resume), drivers, partners, rides, deliveries, approvals, bonuses, wallet adjustments, payout and top-up approvals, support tickets and their own staff
+- The dashboard, analytics and revenue show only their countries, per currency, with a country filter that can never widen beyond what they are assigned
+- Guarded by design: they can't touch other countries, create a Super Admin, change a country's currency, edit their own assignment or adjust their own wallet. Global settings, promo codes, the audit log and corporate accounts stay with Super Admins
+- Support tickets are routed by country and language, can be read in the customer's language and translated to English with one click
 
 **Payments and mobile money**
 - Wallet top-ups and ride payments through Paystack, Flutterwave and Orange Money, with each country offered only the providers that serve it
@@ -118,7 +131,7 @@ Built end to end: a Node.js REST API, a web admin console, and iOS and Android a
 
 **Also includes:** commission ledger, live trip sharing for rider safety (Shield), corporate accounts, and a pay-later credit product
 
-**Quality:** 180+ automated backend tests covering pricing, commission, payouts and phone rules, and a type-checked admin console
+**Quality:** 240+ automated backend tests covering pricing, commission, payouts, phone rules and country-level access control, and a type-checked admin console
 
 - **Stack:** Node.js, Express, PostgreSQL, Prisma, Expo (React Native), React, TypeScript, Tailwind CSS, Jest; deployed on Render and Vercel
 
